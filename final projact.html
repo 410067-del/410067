@@ -79,7 +79,6 @@
 
         function endGame(){
             if(gameOver) return;
-            
             gameOver = true;
 
             rankings.push(score);
@@ -96,7 +95,7 @@
             let list = document.getElementById("rankList");
             list.innerHTML = "";
 
-            rankings.forEach(function(s,i) {
+            rankings.forEach((s,i)=> {
                 let li = document.createElement("li");
                 li.innerText = `第${i + 1}名:${s}分`;
                 list.appendChild(li);
@@ -114,7 +113,7 @@
 
             startTimer();
         }
-
+            startTimer();
         </script>
 
     </body>
