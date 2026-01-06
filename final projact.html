@@ -83,9 +83,12 @@
 
             rankings.push(score);
             rankings.sort((a,b) => b - a);
+            rankings = rankings.slice(0,3);
 
             updateRank();
-            alert("時間到!你的分數是:" + score);
+            setTimeout(function() {
+                alert("時間到!你的分數是:" + score);
+            },10);
         }
 
         function updateRank() {
