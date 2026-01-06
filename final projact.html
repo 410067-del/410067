@@ -12,15 +12,21 @@
                 color:black;
             }
 
-            #score #time{
+            #score ,#time{
                 font-size: 24px;
-                margin: 20px;
+                margin: 10px;
             }
 
             button {
-                font-size:20px ;
-                padding: 15px 30px;
+                font-size:18px ;
+                padding: 10px 25px;
+                margin: 5px;
                 cursor: pointer;
+            }
+
+            #rank {
+                margin-top: 20px;
+                font-size: 20px;
             }
         </style>
        
@@ -31,12 +37,21 @@
 
         <div id="score">分數:0</div>
         <div id="time">剩餘時間:10秒</div>
+        
         <button onclick="clickme()">點我</button>
+        <button onclick="reestarGame()">重新開始</button>
+
+        <div id="rank">
+            <h3>排行榜</h3>
+            <ol id="rankList"></ol>
+        </div>
 
         <script>
             let score = 0;
             let timeLeft = 10;
             let gameOver = false;
+            let timer = null;
+            let rankings = [];
 
             function clickme() {
                 if(!gameOver) {
@@ -45,17 +60,51 @@
                 }
             }
 
-            let timer = setInterval(function() {
+            function startTimer() {
+            timer = setInterval(function() {
                 timeLeft--;
                 document.getElementById("time").innerText = "剩餘時間:" + timeLeft + "秒";
             
+                if(timerLeft == 0){
+                    endGame();
+                }
+            },1000);
+        }
 
-           if(timeLeft == 0) {
-                gameOver = true;
-                clearInterval(timer);
-                alert("時間到!你的分數是:" + score );
-           }
-            }, 1000);
+        function endGame(){
+            gameOver = true;
+            clearInterval(timer);
+
+            rankings.push(score);
+            rankings.sort((a,b) => b - a);
+
+            updateRank();
+            alert("時間到!你的分數是:" + score);
+        }
+
+        function updateRank() {
+            let list = document.getElementById("rankList");
+            list.innerHTML = "";
+
+            rankings.forEach(function(s,i) {
+                let li = document.createElement("li");
+                li.innerText = `第${i + 1}名:${s}分`;
+                list.appendChild(li);
+            });
+        }
+
+        function restartGame() {
+            clearInterval(timer);
+            score = 0;
+            timeLeft = 10 ;
+            gameOver = false;
+
+            document.getElementById("score").innerText = "分數:0";
+            document.getElementById("timer").innerText = "剩餘時間:10秒";
+
+            startTimer();
+        }
+        startTimer();
         </script>
 
     </body>
