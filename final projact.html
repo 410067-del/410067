@@ -61,15 +61,20 @@
             }
 
             function startTimer() {
-            timer = setInterval(function() {
-                if(timeLeft <= 0){
-                    endGame();
-                    return;
-                }
+                clearInterval(timer);
+                timer = setInterval(function() {
                 
                 timeLeft--;
                 document.getElementById("time").innerText = "剩餘時間:" + timeLeft + "秒";
-        
+                
+                
+                    if(timeLeft === 0){
+                        clearInterval(timer);
+                        endGame();
+                    return;
+                }
+                
+        timeLeft--;
             },1000);
         }
 
