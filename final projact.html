@@ -1,9 +1,53 @@
 <html>
     <head>
-        <title></title>
+        <title>練習搶票神器～</title>
+        <style>
+            body {
+                font-family: Arial;
+                text-align: center;
+                background-color: white;
+            }
+
+            h1 {
+                color:black;
+            }
+
+            #score {
+                font-size: 24px;
+                margin: 20px;
+            }
+
+            button {
+                font-size:20px ;
+                padding: 15px 30px;
+                cursor: pointer;
+            }
+        </style>
        
     </head>
     <body>
+        <h1>練習搶票神器～</h1>
+        <p>分數越高越容易搶到喔!</p>
+
+        <div id="score">分數:</div>
+        <button onclick="clickme()">點我</button>
+
+        <script>
+            let score = 0;
+            let gameOver = false;
+
+            function clickme() {
+                if(!gameOver) {
+                    score++;
+                    document.getElementById("score").innerText = "分數:" + score;
+                }
+            }
+
+            setTimeout(function() {
+                gameOver = ture;
+                alert("時間到!你的分數是:" + score );
+            }, 10000);
+        </script>
 
     </body>
 </html>
