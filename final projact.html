@@ -65,14 +65,13 @@
                
                
                 timer = setInterval(function() {
-                document.getElementById("time").innerText = "剩餘時間:" + timeLeft + "秒";
-                
-                
-                    if(timeLeft === 0){
+                if(timeLeft <= 0){
                         clearInterval(timer);
                         endGame();
                     return;
                 }
+                
+                    document.getElementById("time").innerText = "剩餘時間:" + timeLeft + "秒";
             timeLeft--;
             },1000);
         }
