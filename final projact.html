@@ -64,7 +64,7 @@
                 clearInterval(timer);
                 timer = setInterval(function() {
                 
-                timeLeft--;
+                
                 document.getElementById("time").innerText = "剩餘時間:" + timeLeft + "秒";
                 
                 
@@ -73,7 +73,7 @@
                         endGame();
                     return;
                 }
-            
+            timeLeft--;
             },1000);
         }
 
