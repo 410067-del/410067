@@ -12,7 +12,7 @@
                 color:black;
             }
 
-            #score {
+            #score #time{
                 font-size: 24px;
                 margin: 20px;
             }
@@ -29,11 +29,13 @@
         <h1>練習搶票神器～</h1>
         <p>分數越高越容易搶到喔!</p>
 
-        <div id="score">分數:</div>
+        <div id="score">分數:0</div>
+        <div id="time">剩餘時間:10秒</div>
         <button onclick="clickme()">點我</button>
 
         <script>
             let score = 0;
+            let timeLeft = 10;
             let gameOver = false;
 
             function clickme() {
@@ -43,10 +45,17 @@
                 }
             }
 
-            setTimeout(function() {
+            let timer = setInterval(function() {
+                timeLeft--;
+                document.getElementById("time").innerText = "剩餘時間:" + timeLeft + "秒";
+            
+
+           if(timeLeft == 0) {
                 gameOver = true;
+                clearInterval(timer);
                 alert("時間到!你的分數是:" + score );
-            }, 10000);
+           }
+            }, 1000);
         </script>
 
     </body>
