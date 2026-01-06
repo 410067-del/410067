@@ -62,12 +62,14 @@
 
             function startTimer() {
             timer = setInterval(function() {
+                if(timeLeft <= 0){
+                    endGame();
+                    return;
+                }
+                
                 timeLeft--;
                 document.getElementById("time").innerText = "剩餘時間:" + timeLeft + "秒";
-            
-                if(timerLeft == 0){
-                    endGame();
-                }
+        
             },1000);
         }
 
