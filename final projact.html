@@ -62,9 +62,9 @@
 
             function startTimer() {
                 clearInterval(timer);
+               
+               
                 timer = setInterval(function() {
-                
-                
                 document.getElementById("time").innerText = "剩餘時間:" + timeLeft + "秒";
                 
                 
@@ -78,8 +78,9 @@
         }
 
         function endGame(){
+            if(gameOver) return;
+            
             gameOver = true;
-            clearInterval(timer);
 
             rankings.push(score);
             rankings.sort((a,b) => b - a);
